@@ -18,6 +18,10 @@ public class User {
     }
 
     public boolean validatePassword(String inputPassword) {
-        return this.password.equals(inputPassword);
+        // 1 hash the input password the user just typed
+        String hashedInput = Security.hashPassword(inputPassword);
+        
+        // 2 compare it with the stored hash from the file
+        return this.password.equals(hashedInput);
     }
 }
