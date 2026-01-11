@@ -59,8 +59,8 @@ public class Main {
             String choice = scanner.nextLine();
 
             if (choice.equals("1")) {
-                System.out.println(">> Opening Journal Manager... (Coming soon)");
-                // We will connect the Journal Manager here in the next step
+                JournalManager jm = new JournalManager(currentUser);
+                jm.manageJournals(scanner);
             } else if (choice.equals("2")) {
                 System.out.println(">> Opening Weekly Summary... (Coming soon)");
             } else if (choice.equals("3")) {
