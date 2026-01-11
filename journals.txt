@@ -5,3 +5,5 @@ s100202@student.fop;2026-01-12;Ribut petir di beberapa tempat;NEGATIVE;damn i fa
 s100202@student.fop;2026-01-12;Ribut petir di beberapa tempat;POSITIVE;happy as ever!
 y;2026-01-12;Stormy;POSITIVE;hello shibal!!
 1;2026-01-12;Stormy;POSITIVE;yo! i failed my exam.. but, i got a gift!!
+0;2026-01-12;Stormy;NEGATIVE;i finished my exam
+s100202@student.fop;2026-01-12;Ribut petir di beberapa tempat;POSITIVE;hi!!!
