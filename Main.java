@@ -62,7 +62,10 @@ public class Main {
                 JournalManager jm = new JournalManager(currentUser);
                 jm.manageJournals(scanner);
             } else if (choice.equals("2")) {
-                System.out.println(">> Opening Weekly Summary... (Coming soon)");
+                // 1. create the manager
+                JournalManager jm = new JournalManager(currentUser);
+                // 2. calling method
+                jm.viewWeeklySummary(scanner);
             } else if (choice.equals("3")) {
                 System.out.println("Goodbye!");
                 System.exit(0);

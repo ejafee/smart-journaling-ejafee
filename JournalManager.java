@@ -192,8 +192,68 @@ public class JournalManager {
             System.out.println("Error saving journal.");
         }
     }
+    // 5. WEEKLY SUMMARY
+    public void viewWeeklySummary(Scanner scanner) {
+        System.out.println("\n=== Weekly Summary (Past 7 Days) ===");
+        
+        LocalDate today = LocalDate.now();
+        LocalDate oneWeekAgo = today.minusDays(7);
+        
+        // Sort entries by date
+        journals.sort(Comparator.comparing(JournalEntry::getDate));
 
-    // --- API HELPER METHODS (SAME AS BEFORE) ---
+        boolean found = false;
+        int positiveCount = 0;
+        int negativeCount = 0;
+
+        // Print Table Header
+        System.out.printf("%-15s %-30s %-15s\n", "Date", "Weather", "Mood");
+        System.out.println("-------------------------------------------------------------");
+
+        for (JournalEntry entry : journals) {
+            try {
+                LocalDate entryDate = LocalDate.parse(entry.getDate());
+                
+                // Check if date is within the last 7 days
+                if ((entryDate.isAfter(oneWeekAgo) || entryDate.isEqual(oneWeekAgo)) && 
+                    (entryDate.isBefore(today) || entryDate.isEqual(today))) {
+                    
+                    // Print row
+                    System.out.printf("%-15s %-30s %-15s\n", 
+                        entry.getDate(), 
+                        shorten(entry.getWeather(), 28), // Truncate long weather text
+                        entry.getMood()
+                    );
+                    
+                    if(entry.getMood().equalsIgnoreCase("POSITIVE")) positiveCount++;
+                    if(entry.getMood().equalsIgnoreCase("NEGATIVE")) negativeCount++;
+                    
+                    found = true;
+                }
+            } catch (Exception e) {
+                // Ignore parsing errors for invalid dates
+            }
+        }
+
+        if (!found) {
+            System.out.println("No entries found for the past week.");
+        } else {
+            System.out.println("-------------------------------------------------------------");
+            System.out.println("Summary: " + positiveCount + " Positive days, " + negativeCount + " Negative days.");
+        }
+        
+        System.out.println("\nPress Enter to return.");
+        scanner.nextLine();
+    }
+    
+    // Helper to shorten long text (like weather descriptions) so the table looks neat
+    private String shorten(String text, int limit) {
+        if (text == null) return "-";
+        if (text.length() <= limit) return text;
+        return text.substring(0, limit - 3) + "...";
+    }
+
+    // --- API HELPER METHODS ---
 
     private String fetchWeather() {
         try {
