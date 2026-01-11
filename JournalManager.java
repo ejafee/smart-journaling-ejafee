@@ -246,7 +246,7 @@ public class JournalManager {
         scanner.nextLine();
     }
     
-    // Helper to shorten long text (like weather descriptions) so the table looks neat
+    // Helper to shorten long text (like weather descriptions)
     private String shorten(String text, int limit) {
         if (text == null) return "-";
         if (text.length() <= limit) return text;
@@ -257,13 +257,17 @@ public class JournalManager {
 
     private String fetchWeather() {
         try {
-            String response = api.get("https://api.data.gov.my/weather/forecast/?contains=WP%20Kuala%20Lumpur@location__location_name&sort=date&limit=1"); 
+            String response = api.get(WEATHER_API_URL);
             String key = "\"summary_forecast\":\"";
             int startIndex = response.indexOf(key);
+            
             if (startIndex != -1) {
                 startIndex += key.length();
                 int endIndex = response.indexOf("\"", startIndex);
-                return response.substring(startIndex, endIndex);
+                String rawWeather = response.substring(startIndex, endIndex);
+                
+                // NEW: Simplify the weather before returning it
+                return simplifyWeather(rawWeather);
             }
         } catch (Exception e) {
              // System.out.println(e.getMessage()); 
@@ -271,7 +275,27 @@ public class JournalManager {
         return "Unknown"; 
     }
 
-private String determineMood(String text) {
+    // EXTRA FEATURE: simplify weather
+    private String simplifyWeather(String rawWeather) {
+        if (rawWeather == null) return "Unknown";
+        
+        String lower = rawWeather.toLowerCase();
+        
+        if (lower.contains("ribut") || lower.contains("petir")) {
+            return "Stormy";
+        } else if (lower.contains("hujan")) {
+            return "Rainy";
+        } else if (lower.contains("mendung")) {
+            return "Cloudy";
+        } else if (lower.contains("cerah") || lower.contains("tiada hujan")) {
+            return "Clear";
+        }
+        
+        // if its something else, return the original text (or default to cloudy)
+        return rawWeather; 
+    }
+
+    private String determineMood(String text) {
         try {
             // 1. Load the Environment Variables (Just like in API.java)
             Map<String, String> env = EnvLoader.loadEnv(".env");
