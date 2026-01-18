@@ -1,0 +1,11 @@
+s100202@student.fop;2026-01-11;Sunny (Pending API);Happy (Pending API);test hello
+s100202@student.fop;2026-01-12;Ribut petir di beberapa tempat;Unknown;i failed my exam :(
+s100202@student.fop;2026-01-12;Ribut petir di beberapa tempat;NEGATIVE;i failed my exam :(
+s100202@student.fop;2026-01-12;Ribut petir di beberapa tempat;NEGATIVE;damn i failed my exam :(
+s100202@student.fop;2026-01-12;Ribut petir di beberapa tempat;POSITIVE;happy as ever!
+y;2026-01-12;Stormy;POSITIVE;hello shibal!!
+1;2026-01-12;Stormy;POSITIVE;yo! i failed my exam.. but, i got a gift!!
+0;2026-01-12;Stormy;NEGATIVE;i finished my exam
+s100202@student.fop;2026-01-12;Ribut petir di beberapa tempat;POSITIVE;hi!!!
+falih123@gmail.com;2026-01-18;Stormy;Unknown;Semoga dapat nilai bagus untuk presentasi besok aamiin
+falih.fop;2026-01-18;Stormy;POSITIVE;Hi there!
