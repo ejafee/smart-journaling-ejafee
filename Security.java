@@ -6,11 +6,22 @@ public class Security {
         int shift = 3; 
 
         for (char character : password.toCharArray()) {
-            if (Character.isLetter(character)) {
-                char base = Character.isLowerCase(character) ? 'a' : 'A';
-                // Rotate the letter
-                character = (char) ((character - base + shift) % 26 + base);
+            // lowercase letters
+            if (Character.isLowerCase(character)) {
+                character = (char) ((character - 'a' + shift) % 26 + 'a');
             }
+
+            // uppercase letters
+            else if (Character.isUpperCase(character)) {
+                character = (char) ((character - 'A' + shift) % 26 + 'A');
+            }
+
+            // degits
+            else if (Character.isDigit(character)) {
+                character = (char) ((character - '0' + shift) % 10 + '0');
+            }
+
+            // Other characters (symbols) remain unchanged
             result.append(character);
         }
         return result.toString();
