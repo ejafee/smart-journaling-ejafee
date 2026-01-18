@@ -131,12 +131,17 @@ public class Main {
 
     // --- EXISTING HELPER METHODS ---
 
-    private static void loadUserData() {
+private static void loadUserData() {
         try {
             File file = new File("UserData.txt");
             Scanner fileScanner = new Scanner(file);
             while (fileScanner.hasNextLine()) {
-                String email = fileScanner.nextLine();
+                String line = fileScanner.nextLine().trim();
+                
+                // Skip empty separator lines
+                if (line.isEmpty()) continue;
+                
+                String email = line;
                 if (!fileScanner.hasNextLine()) break;
                 String name = fileScanner.nextLine();
                 if (!fileScanner.hasNextLine()) break;
