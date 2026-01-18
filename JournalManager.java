@@ -258,7 +258,7 @@ public class JournalManager {
     private String fetchWeather() {
         try {
             String response = api.get(WEATHER_API_URL);
-            String key = "\"summary_forecast\":\"";
+            String key = "\"morning_forecast\":\"";
             int startIndex = response.indexOf(key);
             
             if (startIndex != -1) {
@@ -283,12 +283,12 @@ public class JournalManager {
         
         if (lower.contains("ribut") || lower.contains("petir")) {
             return "Stormy";
-        } else if (lower.contains("hujan")) {
-            return "Rainy";
-        } else if (lower.contains("mendung")) {
-            return "Cloudy";
         } else if (lower.contains("cerah") || lower.contains("tiada hujan")) {
             return "Clear";
+        } else if (lower.contains("mendung")) {
+            return "Cloudy";
+        } else if (lower.contains("hujan")) {
+            return "Rainy";
         }
         
         // if its something else, return the original text (or default to cloudy)
