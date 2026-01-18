@@ -72,7 +72,6 @@ public class Main {
             fw.write(email + "\n");
             fw.write(name + "\n");
             fw.write(hashedPassword + "\n");
-            fw.write("\n");
             fw.close();
             System.out.println("Registration Successful! You can now login.");
         } catch (IOException e) {
